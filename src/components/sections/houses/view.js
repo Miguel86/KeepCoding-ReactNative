@@ -18,6 +18,7 @@ class Houses extends Component {
     }
 
     _onHouseTapped(house) {
+        this.props.onHouseTapped(house)
     }
 
     _renderItem({ item }) {
@@ -55,16 +56,22 @@ class Houses extends Component {
                     
                 />
                 {this._renderActivityIndicator()}
+
+                <Text style={{color: 'white'}}>{this.props.house && this.props.house.nombre}</Text>
             </View>
         )
-        /* ListFooterComponent={() => this._renderActivityIndicator()}*/
+        /* ListFooterComponent={() => this._renderActivityIndicator()}
+        <Text style={{color: 'white'}}>{this.props.house && this.props.house.nombre}</Text>
+        */
     }
 }
 
 const mapStateToProps = (state) => {
+    //console.log("state.houses.item: ", state.houses.item)
     return {
         isFetching: state.houses.isFetching,
         list: state.houses.list,
+        //house: state.houses.item,
     }
 } 
 
@@ -72,6 +79,11 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchHousesList: () => {
             dispatch(HousesActions.fetchHousesList())
+        },
+        onHouseTapped: (house) => {
+            console.log("onHouseTapped house: ", house)
+            dispatch(HousesActions.setItem(house))
+            //Actions.characters({title: house.nombre})
         }
     }
 }
