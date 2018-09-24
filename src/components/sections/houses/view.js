@@ -83,7 +83,7 @@ const mapDispatchToProps = (dispatch, props) => {
         onHouseTapped: (house) => {
             console.log("onHouseTapped house: ", house)
             dispatch(HousesActions.setItem(house))
-            //Actions.characters({title: house.nombre})
+            Actions.characters({title: house.nombre})
         }
     }
 }
