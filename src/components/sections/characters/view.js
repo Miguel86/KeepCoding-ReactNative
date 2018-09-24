@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import styles from './styles'
 import {connect} from 'react-redux'
+import * as CharactersActions from '../../../redux/characters/actions'
 
 class Characters extends Component {
     componentDidMount(){
@@ -20,8 +21,9 @@ class Characters extends Component {
 }
 //Declaración como constante
 const mapStateToProps = (state) => {
+    console.log("mapStateToProps: ", state)
     return {
-        isFetching: state.characters.isFetching,
+        //isFetching: state.characters.isFetching,
         /*house: state.houses.item,*/
     }
 }
@@ -31,6 +33,7 @@ function mapDispatchToProps(dispatch, props) {
     return {
         fetchHouseCharacters: () => {
             /*console.log("fetchHouseCharacters mapDispatchToProps")*/
+            dispatch(CharactersActions.fetchHouseCharacters())
         }
     }
 }

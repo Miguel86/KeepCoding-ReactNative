@@ -12,7 +12,10 @@ import * as reducers from '../redux/'
 const reducer = combineReducers(reducers)
 const store = createStore(
     reducer,
-    applyMiddleware(thunk)
+    applyMiddleware(thunk.withExtraArgument(api))
+    /* 
+        applyMiddleware(thunk.withExtraArgument({api: api, nombre: 'hola'}))
+    */
 )
 
 export default class App extends Component {
